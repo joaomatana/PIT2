@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cupcake App - Carrinho</title>
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <div class="navbar">
+        <a href="{{ url_for('cupcake_list') }}">Cupcakes</a>
+        <a href="{{ url_for('shopping_cart') }}">Carrinho</a>
+        <a href="{{ url_for('user_profile') }}">Perfil</a>
+        <a href="{{ url_for('logout') }}" style="float: right;">Logout</a>
+    </div>
+    
+    <div class="container">
+        <h2>Seu Carrinho</h2>
+
+        <ul>
+            {% for cupcake in cupcakes_no_carrinho %}
+                <li>
+                    <strong>{{ cupcake[0] }}</strong>
+                    <p>{{ cupcake[1] }}</p>
+                    <p>Preço: R$ {{ cupcake[2] }}</p>
+                    <form action="/excluir-do-carrinho" method="post">
+                        <input type="hidden" name="cupcake_id" value="{{ cupcake[0] }}">
+                        <input type="submit" value="Remover do Carrinho">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form action="/checkout" method="POST">
+            <button type="submit">Ir Para Checkout</button>
+        </form>
+    </div>
+</body>
+</html>

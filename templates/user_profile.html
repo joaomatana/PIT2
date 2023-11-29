@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cupcake App - Perfil do Usuário</title>
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <div class="navbar">
+        <a href="{{ url_for('cupcake_list') }}">Cupcakes</a>
+        <a href="{{ url_for('shopping_cart') }}">Carrinho</a>
+        <a href="{{ url_for('user_profile') }}">Perfil</a>
+        <a href="{{ url_for('logout') }}" style="float: right;">Logout</a>
+    </div>
+    
+    <div class="container">
+        <h2>Perfil do Usuário</h2>
+
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Password:</strong> {{ user.password }}</p>
+        <p><strong>Nome:</strong> {{ user.nome }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Endereço:</strong> {{ user.endereco }}</p>
+
+        <a href="{{ url_for('editar_perfil') }}">Editar Perfil</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cupcake App - Pedido Finalizado</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Pedido Finalizado com Sucesso!</h2>
+
+        <p>O seu pedido foi finalizado com sucesso. Obrigado pela compra!</p>
+
+        <a href="{{ url_for('cupcake_list') }}">Retornar à lista de Cupcakes</a>
+    </div>
+</body>
+</html>

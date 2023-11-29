@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cupcake App - Checkout</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Checkout</h2>
+
+        <div>
+            <h3>Itens do Carrinho</h3>
+            <ul>
+                {% for cupcake in cupcakes_no_carrinho %}
+                    <li>
+                        <strong>{{ cupcake[0] }}</strong>
+                        <p>{{ cupcake[1] }}</p>
+                        <p>Preço: R$ {{ cupcake[2] }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <p>Total: R$ {{ total }}</p>
+        </div>
+
+        <form action="/finalizar-pedido" method="POST">
+            <div>
+                <label for="forma_pagamento">Forma de Pagamento:</label>
+                <select id="forma_pagamento" name="forma_pagamento" required>
+                    <option value="credito">Cartão de Crédito</option>
+                    <option value="debito">Cartão de Débito</option>
+                    <option value="boleto">Boleto Bancário</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="forma_entrega">Forma de Entrega:</label>
+                <select id="forma_entrega" name="forma_entrega" required>
+                    <option value="retirada">Retirada na Loja</option>
+                    <option value="entrega">Entrega em Domicílio</option>
+                </select>
+            </div>
+
+            <button type="submit">Finalizar Pedido</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cupcake App - Cupcakes</title>
+</head>
+<body>
+        
+    <!-- Barra de Navegação -->
+    <div class="navbar">
+        <a href="{{ url_for('cupcake_list') }}">Cupcakes</a>
+        <a href="{{ url_for('shopping_cart') }}">Carrinho</a>
+        <a href="{{ url_for('user_profile') }}">Perfil</a>
+        <a href="{{ url_for('logout') }}" style="float: right;">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Escolha seus Cupcakes</h2>
+
+        <form action="/adicionar-ao-carrinho" method="POST">
+            {% for cupcake in cupcakes %}
+            <li>
+                <strong>{{ cupcake[1] }}</strong>
+                <p>{{ cupcake[2] }}</p>
+                <p>Preço: R$ {{ cupcake[3] }}</p>
+                <form action="/adicionar-ao-carrinho" method="post">
+                    <input type="hidden" name="cupcake_id" value="{{ cupcake[0] }}">
+                    <input type="submit" value="Adicionar ao Carrinho">
+                </form>
+            </li>
+        {% endfor %}
+
+            <button type="submit">Ir Para Carrinho</button>
+        </form>
+    </div>
+</body>
+</html>

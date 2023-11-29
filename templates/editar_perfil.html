@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cupcake App - Editar Perfil</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Perfil</h2>
+
+        <form action="/editar-perfil" method="POST">
+            <label for="novo_email">Novo Email:</label>
+            <input type="text" id="novo_email" name="novo_email" value="{{ user.email }}" required>
+
+            <label for="novo_endereco">Novo Endereço:</label>
+            <input type="text" id="novo_endereco" name="novo_endereco" value="{{ user.endereco }}" required>
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+
+        <p><a href="{{ url_for('user_profile') }}">Cancelar</a></p>
+    </div>
+</body>
+</html>
